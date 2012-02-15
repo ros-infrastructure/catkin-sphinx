@@ -1,0 +1,8 @@
+Catkin Sphinx plugins for cmake domain and ShLexer
+
+Using
+-----
+
+To use this plugin, add the following to your ``conf.py``:
+
+    extensions = extensions + ['catkin_sphinx.cmake']
