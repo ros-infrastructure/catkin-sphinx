@@ -5,4 +5,15 @@ Using
 
 To use this plugin, add the following to your ``conf.py``:
 
-    extensions = extensions + ['catkin_sphinx.cmake']
+    extensions = extensions + ['catkin_sphinx.cmake', 'catkin_sphinx.ShLexer']
+
+
+ros-theme
+---------
+
+copy the theme/ros-theme directory to ~/sphinx to work with projects
+that require ros-theme.
+
+ros-theme-enabled projects use the following html_theme_path setting:
+
+html_theme_path = [os.path.join(os.path.expanduser('~'), 'sphinx'), 'themes']
