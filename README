@@ -11,7 +11,7 @@ To use this plugin, add the following to your ``conf.py``:
 ros-theme
 ---------
 
-copy the theme/ros-theme directory to ~/sphinx to work with projects
+copy the content of theme/ros-theme directory to ~/sphinx/ros-theme to work with projects
 that require ros-theme.
 
 ros-theme-enabled projects use the following html_theme_path setting:
