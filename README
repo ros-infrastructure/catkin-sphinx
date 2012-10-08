@@ -1,9 +1,12 @@
-Catkin Sphinx plugins for cmake domain and ShLexer
+Catkin-Sphinx
+=============
+
+Sphinx plugins for Catkin projects.
 
 Using
 -----
 
-To use this plugin, add the following to your ``conf.py``:
+To use this plugin, add the following to the ``conf.py`` in your project:
 
     extensions = extensions + ['catkin_sphinx.cmake', 'catkin_sphinx.ShLexer']
 
@@ -11,9 +14,10 @@ To use this plugin, add the following to your ``conf.py``:
 ros-theme
 ---------
 
-copy the content of theme/ros-theme directory to ~/sphinx/ros-theme to work with projects
+Copy the content of theme/ros-theme directory to ~/sphinx/ros-theme to work with projects
 that require ros-theme.
 
 ros-theme-enabled projects use the following html_theme_path setting:
 
 html_theme_path = [os.path.join(os.path.expanduser('~'), 'sphinx'), 'themes']
+
