@@ -5,7 +5,10 @@ from distutils.core import setup
 setup(name='catkin-sphinx',
       version='0.1.0',
       packages=['catkin_sphinx'],
-      package_dir = {'':'src'},
+      package_data = {'catkin_sphinx': ['theme/ros-theme/theme.conf',
+                                        'theme/ros-theme/static/sphinxdoc.css',
+                                        'theme/ros-theme/static/pygments.css']},
+      package_dir = {'catkin_sphinx': 'src/catkin_sphinx'},
       author = "Troy Straszheim", 
       author_email = "straszheim@willowgarage.com",
       url = "http://www.ros.org/",
@@ -16,7 +19,8 @@ setup(name='catkin-sphinx',
         "License :: OSI Approved :: BSD License" ],
       description = "ROS package library", 
       long_description = """\
-cmake domain extension for sphinx
+Sphinx extension for Catkin projects
 """,
       license = "BSD"
       )
+
