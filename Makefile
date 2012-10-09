@@ -1,6 +1,6 @@
 .PHONY: all setup clean_dist distro clean install upload push
 
-NAME=bloom
+NAME=catkin-sphinx
 VERSION=`./setup.py --version`
 
 OUTPUT_DIR=deb_dist
@@ -51,7 +51,7 @@ upload-building: deb_dist
 upload: upload-building upload-packages
 
 testsetup:
-	echo "running bloom tests"
+	echo "running catkin-sphinx tests"
 
 test: testsetup
 	cd test && nosetests
