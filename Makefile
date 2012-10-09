@@ -1,9 +1,16 @@
-.PHONY: all setup clean_dist distro clean install deb_dist upload-packages upload-building upload testsetup test
+.PHONY: all setup clean_dist distro clean install upload push
 
-NAME='rosdep'
-VERSION=`python setup.py -V`
+NAME=bloom
+VERSION=`./setup.py --version`
 
 OUTPUT_DIR=deb_dist
+
+USERNAME := $(shell whoami)
+# If william, use my WG login wwoodall
+ifeq ($(USERNAME),william)
+	USERNAME := wwoodall
+endif
+
 
 all:
 	echo "noop for debbuild"
@@ -21,7 +28,7 @@ distro: setup clean_dist
 
 push: distro
 	python setup.py sdist register upload
-	scp dist/${NAME}-${VERSION}.tar.gz ipr:/var/www/pr.willowgarage.com/html/downloads/${NAME}
+	scp dist/${NAME}-${VERSION}.tar.gz ${USERNAME}@ipr:/var/www/pr.willowgarage.com/html/downloads/${NAME}
 
 clean: clean_dist
 	echo "clean"
@@ -29,9 +36,9 @@ clean: clean_dist
 install: distro
 	sudo checkinstall python setup.py install
 
-deb_dist: distro
-	python setup.py --command-packages=stdeb.command bdist_deb
-
+deb_dist:
+	# need to convert unstable to each distro and repeat
+	python setup.py --command-packages=stdeb.command sdist_dsc --workaround-548392=False bdist_deb
 
 upload-packages: deb_dist
 	dput -u -c dput.cf all-shadow ${OUTPUT_DIR}/${NAME}_${VERSION}-1_amd64.changes 
@@ -44,8 +51,7 @@ upload-building: deb_dist
 upload: upload-building upload-packages
 
 testsetup:
-	echo "running rosdep tests"
+	echo "running bloom tests"
 
 test: testsetup
-	nosetests --with-coverage --cover-package=rosdep2 --with-xunit test
-
+	cd test && nosetests
