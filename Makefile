@@ -1,16 +1,9 @@
 .PHONY: all setup clean_dist distro clean install upload push
 
-NAME=bloom
+NAME=catkin-sphinx
 VERSION=`./setup.py --version`
 
 OUTPUT_DIR=deb_dist
-
-USERNAME := $(shell whoami)
-# If william, use my WG login wwoodall
-ifeq ($(USERNAME),william)
-	USERNAME := wwoodall
-endif
-
 
 all:
 	echo "noop for debbuild"
@@ -51,7 +44,7 @@ upload-building: deb_dist
 upload: upload-building upload-packages
 
 testsetup:
-	echo "running bloom tests"
+	echo "running catkin-sphinx tests"
 
 test: testsetup
 	cd test && nosetests
