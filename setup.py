@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='catkin-sphinx',
-      version='0.2.0',
+      version='0.2.1',
       packages=['catkin_sphinx'],
       package_data = {'catkin_sphinx': ['theme/ros-theme/theme.conf',
                                         'theme/ros-theme/static/sphinxdoc.css',
