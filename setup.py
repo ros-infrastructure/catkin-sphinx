@@ -9,8 +9,10 @@ setup(name='catkin-sphinx',
                                         'theme/ros-theme/static/sphinxdoc.css',
                                         'theme/ros-theme/static/pygments.css']},
       package_dir = {'catkin_sphinx': 'src/catkin_sphinx'},
-      author = "Troy Straszheim", 
-      author_email = "straszheim@willowgarage.com",
+      # The original author was Troy Straszheim. The current maintainer is
+      # Issac Trotts.
+      author = "Issac Trotts",
+      author_email = "itrotts@willowgarage.com",
       url = "http://www.ros.org/",
       download_url = "http://pr.willowgarage.com/downloads/catkin_sphinx/", 
       keywords = ["ROS"],
