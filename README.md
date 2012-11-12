@@ -13,8 +13,7 @@ documentation):
 
     # Below the definition of html_theme_path:
     import catkin_sphinx
-    html_theme_path.append(os.path.join(os.path.dirname(catkin_sphinx.__file__),
-                                        'theme'))
+    html_theme_path = [catkin_sphinx.get_theme_path()]
 
     # Use ROS theme
     html_theme = 'ros-theme'
