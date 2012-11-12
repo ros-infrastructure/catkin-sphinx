@@ -81,6 +81,43 @@ def _pseudo_parse_arglist(signode, arglist):
         signode += paramlist
 
 
+def get_cmake_doc_field_types():
+    doc_field_types = []
+    field = TypedField('parameter', label=l_('Parameters'),
+                       names=('param', 'parameter', 'arg', 'argument',
+                              'keyword', 'kwarg', 'kwparam'),
+                       typerolename='obj', typenames=('paramtype', 'type'))
+    # can_collapse not an init keyword in Sphinx 1.0.1
+    field.can_collapse=True
+    doc_field_types.append(field)
+    field = TypedField('variable', label=l_('Input Variables'), rolename='obj',
+                   names=('var', 'ivar', 'cvar'),
+                   typerolename='obj', typenames=('vartype',))
+    field.can_collapse=True
+    doc_field_types.append(field)
+    field = TypedField('outvariable', label=l_('Output Variables'), rolename='obj',
+                   names=('outvar',),
+                   typerolename='obj', typenames=('vartype',))
+    field.can_collapse=True
+    doc_field_types.append(field)
+    field = TypedField('targets', label=l_('Targets Created'), rolename='obj',
+                   names=('target',),
+                   typerolename='obj', typenames=('vartype',))
+    field.can_collapse=True
+    doc_field_types.append(field)
+    field = GroupedField('exceptions', label=l_('Raises'), rolename='exc',
+                     names=('raises', 'raise', 'exception', 'except'))
+    field.can_collapse=True
+    doc_field_types.append(field)
+    doc_field_types.extend([Field('default', label=l_('Default Value'), rolename='obj',
+                                  names=('default',)),
+                            Field('returnvalue', label=l_('Returns'), has_arg=False,
+                                  names=('returns', 'return')),
+                            Field('returntype', label=l_('Return type'), has_arg=False,
+                                  names=('rtype',))])
+    return doc_field_types
+
+
 class CMakeObject(ObjectDescription):
     """
     Description of a general CMake object.
@@ -91,34 +128,7 @@ class CMakeObject(ObjectDescription):
         'annotation': directives.unchanged,
     }
 
-    doc_field_types = [
-        TypedField('parameter', label=l_('Parameters'),
-                   names=('param', 'parameter', 'arg', 'argument',
-                          'keyword', 'kwarg', 'kwparam'),
-                   typerolename='obj', typenames=('paramtype', 'type'),
-                   can_collapse=True),
-        TypedField('variable', label=l_('Input Variables'), rolename='obj',
-                   names=('var', 'ivar', 'cvar'),
-                   typerolename='obj', typenames=('vartype',),
-                   can_collapse=True),
-        TypedField('outvariable', label=l_('Output Variables'), rolename='obj',
-                   names=('outvar',),
-                   typerolename='obj', typenames=('vartype',),
-                   can_collapse=True),
-        TypedField('targets', label=l_('Targets Created'), rolename='obj',
-                   names=('target',),
-                   typerolename='obj', typenames=('vartype',),
-                   can_collapse=True),
-        GroupedField('exceptions', label=l_('Raises'), rolename='exc',
-                     names=('raises', 'raise', 'exception', 'except'),
-                     can_collapse=True),
-        Field('default', label=l_('Default Value'), rolename='obj',
-              names=('default',)),
-        Field('returnvalue', label=l_('Returns'), has_arg=False,
-              names=('returns', 'return')),
-        Field('returntype', label=l_('Return type'), has_arg=False,
-              names=('rtype',)),
-    ]
+    doc_field_types = get_cmake_doc_field_types()
 
     def get_signature_prefix(self, sig):
         """May return a prefix to put before the object name in the
