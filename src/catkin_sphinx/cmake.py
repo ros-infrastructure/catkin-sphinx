@@ -3,11 +3,12 @@
     sphinx.domains.cmake
     ~~~~~~~~~~~~~~~~~~~~
 
-    The CMake domain.
-
-    :copyright: Copyright 2007-2011 by the Sphinx team, see AUTHORS.
-    :license: BSD, see LICENSE for details.
+    The CMake domain. Experimental port of the python domain to cmake,
+    code was search&replaced for cmake.
 """
+
+# This file is work in progress, since python concept do not match
+# easily to cmake, parts of the code here may not make much sense.
 
 import re
 
