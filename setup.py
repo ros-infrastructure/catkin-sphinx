@@ -4,7 +4,7 @@ from distutils.core import setup
 
 setup(
   name='catkin-sphinx',
-  version='0.2.1',
+  version='0.2.2',
   packages=['catkin_sphinx'],
   package_data={
     'catkin_sphinx': [
