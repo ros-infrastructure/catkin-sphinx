@@ -476,8 +476,8 @@ class CMakeXRefRole(XRefRole):
         refnode['py:module'] = env.temp_data.get('py:module')
         refnode['py:class'] = env.temp_data.get('py:class')
         if not has_explicit_title:
-            title = title.lstrip('.')   # only has a meaning for the target
-            target = target.lstrip('~') # only has a meaning for the title
+            title = title.lstrip('.')    # only has a meaning for the target
+            target = target.lstrip('~')  # only has a meaning for the title
             # if the first character is a tilde, don't display the module/class
             # parts of the contents
             if title[0:1] == '~':
@@ -612,10 +612,10 @@ class CMakeDomain(Domain):
     ]
 
     def clear_doc(self, docname):
-        for fullname, (fn, _) in self.data['objects'].items():
+        for fullname, (fn, nop) in self.data['objects'].items():
             if fn == docname:
                 del self.data['objects'][fullname]
-        for modname, (fn, _, _, _) in self.data['modules'].items():
+        for modname, (fn, nop, nop, nop) in self.data['modules'].items():
             if fn == docname:
                 del self.data['modules'][modname]
 
@@ -649,11 +649,13 @@ class CMakeDomain(Domain):
                 else:
                     # "fuzzy" searching mode
                     searchname = '.' + name
-                    matches = [(oname, objects[oname]) for oname in objects
-                               if oname.endswith(searchname)
-                               and objects[oname][1] in objtypes]
+                    matches = [
+                        (oname, objects[oname]) for oname in objects
+                        if oname.endswith(searchname) and
+                        objects[oname][1] in objtypes
+                    ]
         else:
-            # NOTE: searching for exact match, object type is not considered
+            # searching for exact match, object type is not considered
             if name in objects:
                 newname = name
             elif type == 'mod':
@@ -664,15 +666,15 @@ class CMakeDomain(Domain):
             elif modname and modname + '.' + name in objects:
                 newname = modname + '.' + name
             elif modname and classname and \
-                     modname + '.' + classname + '.' + name in objects:
+                    modname + '.' + classname + '.' + name in objects:
                 newname = modname + '.' + classname + '.' + name
             # special case: builtin exceptions have module "exceptions" set
             elif type == 'exc' and '.' not in name and \
-                 'exceptions.' + name in objects:
+                    'exceptions.' + name in objects:
                 newname = 'exceptions.' + name
             # special case: object methods
             elif type in ('macro', 'meth') and '.' not in name and \
-                 'object.' + name in objects:
+                    'object.' + name in objects:
                 newname = 'object.' + name
         if newname is not None:
             matches.append((newname, objects[newname]))
@@ -716,6 +718,7 @@ class CMakeDomain(Domain):
             yield (modname, modname, 'module', info[0], 'module-' + modname, 0)
         for refname, (docname, type) in self.data['objects'].iteritems():
             yield (refname, refname, type, docname, refname, 1)
+
 
 def setup(app):
     app.add_domain(CMakeDomain)

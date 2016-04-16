@@ -50,7 +50,7 @@ Then cmake modules and macros can be documented using the following syntax::
 
     .. cmake:macro:: bar(bam)
 
-      :param bam:  foo docstring
+      :param bam: foo docstring
       :type bam: string
       :returns: list
 

@@ -27,7 +27,10 @@
 #
 
 from pygments.lexer import RegexLexer
-from pygments.token import *
+from pygments.token import Comment
+from pygments.token import Generic
+from pygments.token import Text
+
 
 class ShLexer(RegexLexer):
     name = 'Better lexer sh examples'
@@ -45,6 +48,7 @@ class ShLexer(RegexLexer):
             (r'\n', Comment.Multiline, '#pop'),
         ]
     }
+
 
 def setup(app):
     app.add_lexer('catkin-sh', ShLexer())
