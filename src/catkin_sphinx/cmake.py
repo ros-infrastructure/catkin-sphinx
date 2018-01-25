@@ -13,15 +13,16 @@
 import re
 
 from docutils import nodes
+from docutils.parsers.rst import Directive
 from docutils.parsers.rst import directives
 
 from sphinx import addnodes
+from sphinx import version_info
 from sphinx.roles import XRefRole
 from sphinx.locale import l_, _
 from sphinx.domains import Domain, ObjType, Index
 from sphinx.directives import ObjectDescription
 from sphinx.util.nodes import make_refnode
-from sphinx.util.compat import Directive
 from sphinx.util.docfields import Field, GroupedField, TypedField
 
 
@@ -238,8 +239,10 @@ class CMakeObject(ObjectDescription):
 
         indextext = self.get_index_text(modname, name_cls)
         if indextext:
-            self.indexnode['entries'].append(('single', indextext,
-                                              fullname, ''))
+            args = ('single', indextext, fullname, '')
+            if version_info > (1, 4, 0, '', 0):
+                args = args + (None, )
+            self.indexnode['entries'].append(args)
 
     def before_content(self):
         # needed for automatic qualification of members (reset in subclasses)
