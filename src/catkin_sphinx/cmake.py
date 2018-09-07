@@ -615,10 +615,10 @@ class CMakeDomain(Domain):
     ]
 
     def clear_doc(self, docname):
-        for fullname, (fn, nop) in self.data['objects'].items():
+        for fullname, (fn, nop) in list(self.data['objects'].items()):
             if fn == docname:
                 del self.data['objects'][fullname]
-        for modname, (fn, nop, nop, nop) in self.data['modules'].items():
+        for modname, (fn, nop, nop, nop) in list(self.data['modules'].items()):
             if fn == docname:
                 del self.data['modules'][modname]
 
