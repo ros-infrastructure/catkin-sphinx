@@ -51,4 +51,4 @@ class ShLexer(RegexLexer):
 
 
 def setup(app):
-    app.add_lexer('catkin-sh', ShLexer())
+    app.add_lexer('catkin-sh', ShLexer)

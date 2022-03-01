@@ -19,7 +19,7 @@ from docutils.parsers.rst import directives
 from sphinx import addnodes
 from sphinx import version_info
 from sphinx.roles import XRefRole
-from sphinx.locale import l_, _
+from sphinx.locale import _
 from sphinx.domains import Domain, ObjType, Index
 from sphinx.directives import ObjectDescription
 from sphinx.util.nodes import make_refnode
@@ -94,31 +94,31 @@ class CMakeObject(ObjectDescription):
     }
 
     doc_field_types = [
-        TypedField('parameter', label=l_('Parameters'),
+        TypedField('parameter', label=_('Parameters'),
                    names=('param', 'parameter', 'arg', 'argument',
                           'keyword', 'kwarg', 'kwparam'),
                    typerolename='obj', typenames=('paramtype', 'type'),
                    can_collapse=True),
-        TypedField('variable', label=l_('Input Variables'), rolename='obj',
+        TypedField('variable', label=_('Input Variables'), rolename='obj',
                    names=('var', 'ivar', 'cvar'),
                    typerolename='obj', typenames=('vartype',),
                    can_collapse=True),
-        TypedField('outvariable', label=l_('Output Variables'), rolename='obj',
+        TypedField('outvariable', label=_('Output Variables'), rolename='obj',
                    names=('outvar',),
                    typerolename='obj', typenames=('vartype',),
                    can_collapse=True),
-        TypedField('targets', label=l_('Targets Created'), rolename='obj',
+        TypedField('targets', label=_('Targets Created'), rolename='obj',
                    names=('target',),
                    typerolename='obj', typenames=('vartype',),
                    can_collapse=True),
-        GroupedField('exceptions', label=l_('Raises'), rolename='exc',
+        GroupedField('exceptions', label=_('Raises'), rolename='exc',
                      names=('raises', 'raise', 'exception', 'except'),
                      can_collapse=True),
-        Field('default', label=l_('Default Value'), rolename='obj',
+        Field('default', label=_('Default Value'), rolename='obj',
               names=('default',)),
-        Field('returnvalue', label=l_('Returns'), has_arg=False,
+        Field('returnvalue', label=_('Returns'), has_arg=False,
               names=('returns', 'return')),
-        Field('returntype', label=l_('Return type'), has_arg=False,
+        Field('returntype', label=_('Return type'), has_arg=False,
               names=('rtype',)),
     ]
 
@@ -502,8 +502,8 @@ class CMakeModuleIndex(Index):
     """
 
     name = 'modindex'
-    localname = l_('CMake Module Index')
-    shortname = l_('modules')
+    localname = _('CMake Module Index')
+    shortname = _('modules')
 
     def generate(self, docnames=None):
         content = {}
@@ -570,15 +570,15 @@ class CMakeDomain(Domain):
     name = 'cmake'
     label = 'CMake'
     object_types = {
-        'macro':     ObjType(l_('macro'),      'macro', 'obj'),
-        'data':         ObjType(l_('data'),          'data', 'obj'),
-        'class':        ObjType(l_('class'),         'class', 'obj'),
-        'exception':    ObjType(l_('exception'),     'exc', 'obj'),
-        'method':       ObjType(l_('method'),        'meth', 'obj'),
-        'classmethod':  ObjType(l_('class method'),  'meth', 'obj'),
-        'staticmethod': ObjType(l_('static method'), 'meth', 'obj'),
-        'attribute':    ObjType(l_('attribute'),     'attr', 'obj'),
-        'module':       ObjType(l_('module'),        'mod', 'obj'),
+        'macro':        ObjType(_('macro'),         'macro', 'obj'),
+        'data':         ObjType(_('data'),          'data', 'obj'),
+        'class':        ObjType(_('class'),         'class', 'obj'),
+        'exception':    ObjType(_('exception'),     'exc', 'obj'),
+        'method':       ObjType(_('method'),        'meth', 'obj'),
+        'classmethod':  ObjType(_('class method'),  'meth', 'obj'),
+        'staticmethod': ObjType(_('static method'), 'meth', 'obj'),
+        'attribute':    ObjType(_('attribute'),     'attr', 'obj'),
+        'module':       ObjType(_('module'),        'mod', 'obj'),
     }
 
     directives = {
