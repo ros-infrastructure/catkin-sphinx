@@ -14,11 +14,15 @@ setup(
     ]
   },
   package_dir={'catkin_sphinx': 'src/catkin_sphinx'},
-  # The original author was Troy Straszheim
-  # Previous maintainers include: Issac Trotts
-  # The current maintainer is William Woodall
-  author="William Woodall",
-  author_email="william@osrfoundation.org",
+  author = "Troy Straszheim, Issac Trotts, William Woodall",
+  author_email = "straszheim@willowgarage.com, itrotts@willowgarage.com, william@openrobotics.org",
+  maintainer="ROS Infrastructure Team",
+  project_urls={
+    'Source code':
+    'https://github.com/ros-infrastructure/catkin-sphinx',
+    'Issue tracker':
+    'https://github.com/ros-infrastructure/catkin-sphinx/issues',
+  },
   url="http://www.ros.org/",
   download_url="http://pr.willowgarage.com/downloads/catkin_sphinx/",
   keywords=["ROS"],
