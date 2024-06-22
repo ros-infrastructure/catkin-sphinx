@@ -1,2 +1,2 @@
-recursive-include theme *
+recursive-include src/catkin_sphinx/theme *
 
