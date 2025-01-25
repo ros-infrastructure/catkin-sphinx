@@ -33,5 +33,11 @@ setup(
   description="Sphinx extension for Catkin projects",
   long_description="Sphinx extension for Catkin projects that provides a "
                    "custom ROS theme and a Sphinx domain for cmake.",
-  license="BSD"
+  license="BSD",
+  extras_require={
+    'test': [
+      'pytest',
+      'sphinx',
+    ],
+  },
 )
